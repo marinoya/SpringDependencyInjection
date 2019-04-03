@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id="dbQueryMaker"
+      class = "edu.progress.springdependencyinjection.DBQueryMaker"
+      init-method="connect">
+    <constructor-arg index="0" value="jdbc:mysql://127.0.0.1:3306/world"/>
+    <constructor-arg index="1" value="yasen_progress"/>
+    <constructor-arg index="2" value="abc"/></bean>
+    <bean id="server"
+          class="edu.progress.springdependencyinjection.Server">
+    <constructor-arg index="0" value="8000"></constructor-arg>
+    <property name ="queryMaker" ref = "dbQueryMaker"></property></bean>
+</beans>
